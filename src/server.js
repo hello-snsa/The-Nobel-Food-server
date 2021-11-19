@@ -1,21 +1,27 @@
 //for establising connection
 const express = require('express');
-
+const cors = require('cors');
 //to connect with database
 const connect = require("./configs/db");
 //
 const checkController = require("./controllers/check.controller");
+const messageController = require('./controllers/message.controller');
 // const userController = require("./controllers/user.controller");
 const { register, login, getAllUsers } = require("./controllers/user.controller");
 //
 const app = express();
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:4200']
+}))
 
 //middleware express.json()
 app.use(express.json());
+app.use(cors());
 
 // Writing base route as a middleware
 // app.use("/users", userController);
 app.use("/check", checkController);
+app.use('/api/messages', messageController);
 
 app.post("/register", register)
 app.post("/login", login)
