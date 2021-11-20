@@ -21,6 +21,7 @@
 
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
+// const router = require("express").Router();
 
 const User = require("../models/user.model");
 
@@ -112,4 +113,62 @@ const getAllUsers = async (req, res) => {
 
 }
 
-module.exports = { register, login, getAllUsers };
+//single data
+
+
+// GET A USER
+const getUserId = async (req, res) => {
+    // router.get("/:userId", async (req, res) => {
+    try {
+        // find the user with id
+        const user = await User.findById(req.params.userId);
+
+        // send everything except the password
+        const { password, ...other } = user._doc;
+        res.status(200).json(other);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+};
+
+// UPDATE USER
+const updateUserId = async (req, res) => {
+    // router.put("/:id", async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, {
+            $set: req.body,
+        });
+        res.status(200).json("Updated");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+};
+
+// DELETE USER
+const deleteId = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        res.status(200).json("Account deleted");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+};
+
+// GET ALL FOLLOWINGS OF A USER
+const getFollowing = async (req, res) => {
+    try {
+        // find the user with id
+        const currentUser = await User.findById(req.params.id);
+        const followingIds = currentUser.followings;
+
+        const result = await User.find({ _id: { $in: followingIds } });
+        res.status(200).json(result);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+};
+
+
+
+
+module.exports = { register, login, getAllUsers, getUserId, updateUserId, deleteId, getFollowing };

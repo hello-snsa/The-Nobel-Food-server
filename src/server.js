@@ -3,11 +3,16 @@ const express = require('express');
 const cors = require('cors');
 //to connect with database
 const connect = require("./configs/db");
+
+const helmet = require("helmet");
+const morgan = require("morgan");
 //
 const checkController = require("./controllers/check.controller");
 const messageController = require('./controllers/message.controller');
+const orderRoute = require("./controllers/order.controller");
+// const userController = require('./controllers/user.controller');
 // const userController = require("./controllers/user.controller");
-const { register, login, getAllUsers } = require("./controllers/user.controller");
+const { register, login, getAllUsers, getUserId, updateUserId, deleteId, getFollowing } = require("./controllers/user.controller");
 //
 const app = express();
 app.use(cors({
@@ -18,10 +23,20 @@ app.use(cors({
 app.use(express.json());
 app.use(cors());
 
+app.use(helmet());
+app.use(morgan("common"));
+
 // Writing base route as a middleware
 // app.use("/users", userController);
 app.use("/check", checkController);
 app.use('/api/messages', messageController);
+app.use("/api/orders", orderRoute);
+// app.use('/user', userController);
+
+app.get("/:userId", getUserId)
+app.put("/:id", updateUserId)
+app.delete("/:id", deleteId)
+app.get("/:id/followings", getFollowing)
 
 app.post("/register", register)
 app.post("/login", login)

@@ -4,15 +4,20 @@ const bcrypt = require('bcryptjs');
 //Creating schema
 const userSchema = new mongoose.Schema({
 
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true, minLength: 6 },
-    fName: { type: String, required: false },
-    lName: { type: String, required: false },
-
-}, {
-    versionKey: false,
-    timestamps: true
-});
+    name: { type: String, required: true, max: 50 },
+    email: { type: String, required: true, unique: true, max: 50 },
+    password: { type: String, required: true, min: 6 },
+    phoneNumber: { type: String },
+    profilePicture: { type: String, default: "" },
+    userType: { type: String, default: "" },
+    address: { type: String, max: 200, default: "" },
+    donations: { type: Array, default: [] },
+    served: { type: Array, default: [] },
+    noOfNgoMembers: { type: Number },
+    currentLocation: { type: String, default: "" },
+},
+    { timestamps: true, versionKey: false }
+);
 
 // Function for Hashing.
 userSchema.pre("save", function (next) {
