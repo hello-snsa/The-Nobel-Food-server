@@ -30,7 +30,7 @@ app.use(morgan("common"));
 // app.use("/users", userController);
 app.use("/check", checkController);
 app.use('/api/messages', messageController);
-app.use("/api/orders", orderRoute);
+app.use("/orders", orderRoute);
 // app.use('/user', userController);
 
 app.get("/:userId", getUserId)
