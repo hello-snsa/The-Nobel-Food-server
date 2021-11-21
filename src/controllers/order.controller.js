@@ -6,7 +6,8 @@ const Order = require("../models/order.model");
 router.get("/:orderId", async (req, res) => {
   try {
     // find the post with id
-    const order = await Order.findById(req.params.orderId);
+    const order = await Order.findById(req.params.orderId).populate("userId");
+
 
     res.status(200).json(order);
   } catch (err) {
