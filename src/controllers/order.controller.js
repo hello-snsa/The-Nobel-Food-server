@@ -62,8 +62,8 @@ router.delete("/:orderId", async (req, res) => {
 // GET ALL ORDERS BY A USER
 router.get("/user/:userId", async (req, res) => {
   try {
-    const user = await User.findOne({ userId: req.params.userId });
-    const userOrders = await Order.find({ userId: user._id });
+    // const user = await User.findOne({ userId: req.params.userId });
+    const userOrders = await Order.find({ userId: req.params.userId });
 
     res.status(200).json(userOrders);
   } catch (err) {
