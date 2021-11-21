@@ -64,6 +64,9 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email }).exec();
 
+    const userId = user._id;
+    console.log("user id ", userId)
+    // console.log("user id ", user)
     // step 2: if user doesn't exists then throw an error.
     try {
         if (!user)
@@ -93,7 +96,7 @@ const login = async (req, res) => {
     const token = newToken(user);
 
     // 6: return the token to the frontend
-    return res.status(201).json({ data: { token } });
+    return res.status(201).json({ _id: userId, data: { token } });
 
 };
 
