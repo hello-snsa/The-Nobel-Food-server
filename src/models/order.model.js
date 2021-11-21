@@ -13,7 +13,6 @@ const orderSchema = new mongoose.Schema(
     receiverId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
-      required: false,
     },
     chapatiQuantity: { type: Number },
     riceQuantity: { type: Number },
@@ -24,7 +23,7 @@ const orderSchema = new mongoose.Schema(
     others: { type: Number },
     isCompleted: { type: Boolean, default: false },
     currentLocation: { type: String, default: "" },
-    isOrderSelected: { type: String, default: false },
+    isOrderSelected: { type: Boolean, default: false },
   },
   { timestamps: true, versionKey: false }
 );
