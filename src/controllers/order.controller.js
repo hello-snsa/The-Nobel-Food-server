@@ -99,7 +99,7 @@ router.get("/", async (req, res) => {
   try {
     // find the post with id.
     console.log("hjhhglkhjvkgflkuglj")
-    const order = await Order.find().populate("userId").populate("receiverId");
+    const order = await Order.find({ "isOrderSelected": false }).populate("userId").populate("receiverId");
 
 
     res.status(200).json(order);
