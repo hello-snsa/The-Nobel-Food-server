@@ -6,9 +6,9 @@ const router = express.Router();
 
 
 const pusher = new Pusher({
-    appId: "1301062",
-    key: "0cbdecb2e64d2318a070",
-    secret: "c7b8b3900404727120ef",
+    appId: "1300122",
+    key: "fdd045e594b7c2c50324",
+    secret: "381b2b8bb78b44bf5945",
     cluster: "ap2",
     useTLS: true
 });
