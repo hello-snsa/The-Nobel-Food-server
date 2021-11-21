@@ -99,7 +99,8 @@ router.get("/", async (req, res) => {
   try {
     // find the post with id.
     console.log("hjhhglkhjvkgflkuglj")
-    const order = await Order.find({ isOrderSelected: false }).populate("userId").populate("receiverId");
+    const order = await Order.find({ "isOrderSelected": true }).populate("userId").populate("receiverId");
+    // const order = await Order.find({"isOrderSelected": { $not: { true} } }).populate("userId").populate("receiverId");
 
 
     res.status(200).json(order);
