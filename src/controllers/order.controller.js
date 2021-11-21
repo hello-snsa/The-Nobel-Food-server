@@ -30,13 +30,15 @@ router.post("/", async (req, res) => {
 // UPDATE AN ORDER
 router.put("/:orderId", async (req, res) => {
   try {
-    const order = await Order.findById(req.params.orderId);
-    if (order.userId === req.body.userId) {
-      await order.updateOne({ $set: req.body });
-      res.status(200).json("Order updated");
-    } else {
-      res.status(403).json("you can't update another users order");
-    }
+    // const order = await Order.findById(req.params.orderId);
+    const order = await Order.findByIdAndUpdate(req.params.orderId, { $set: req.body });
+    res.status(200).json("Order updated");
+    // if (order.userId === req.body.userId) {
+    //   await order.updateOne({ $set: req.body });
+    //   res.status(200).json("Order updated");
+    // } else {
+    //   res.status(403).json("you can't update another users order");
+    // }
   } catch (err) {
     res.status(500).json(err);
   }
