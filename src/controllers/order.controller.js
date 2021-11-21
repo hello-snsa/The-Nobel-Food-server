@@ -82,4 +82,30 @@ router.get("/receiver/:receiverId", async (req, res) => {
   }
 });
 
+// router.get("/", async (req, res) => {
+//   try {
+//     // const user = await User.findOne({ userId: req.params.userId });
+//     console.log("get req")
+//     const getOrders = await Order.find().lean().exec();
+
+//     res.status(200).json(getOrders);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
+router.get("/", async (req, res) => {
+  try {
+    // find the post with id.
+    console.log("hjhhglkhjvkgflkuglj")
+    const order = await Order.find().populate("userId").populate("receiverId");
+
+
+    res.status(200).json(order);
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+});
+
 module.exports = router;
