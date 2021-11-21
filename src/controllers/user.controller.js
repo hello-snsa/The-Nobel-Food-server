@@ -96,8 +96,9 @@ const login = async (req, res) => {
     const token = newToken(user);
 
     // 6: return the token to the frontend
-    return res.status(201).json({ _id: userId, data: { token } });
 
+    return res.status(201).json(user);
+    // return res.status(201).json({ _id: userId, data: { token } });
 };
 
 
