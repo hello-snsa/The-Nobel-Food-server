@@ -1,9 +1,20 @@
 const mongoose = require("mongoose");
+const User = require("./user.model");
+
 
 const orderSchema = new mongoose.Schema(
   {
-    userId: { type: String, required: true },
-    receiverId: { type: String, required: false, default: "" },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
+
+    receiverId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: false,
+    },
     chapatiQuantity: { type: Number },
     riceQuantity: { type: Number },
     dalQuantity: { type: Number },
@@ -13,6 +24,7 @@ const orderSchema = new mongoose.Schema(
     others: { type: Number },
     isCompleted: { type: Boolean, default: false },
     currentLocation: { type: String, default: "" },
+    isOrderSelected: { type: String, default: false },
   },
   { timestamps: true, versionKey: false }
 );
