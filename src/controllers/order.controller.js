@@ -70,5 +70,16 @@ router.get("/user/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// GET ALL ORDERS BY A Reciever
+router.get("/receiver/:receiverId", async (req, res) => {
+  try {
+    // const user = await User.findOne({ userId: req.params.userId });
+    const receiverOrders = await Order.find({ receiverId: req.params.receiverId });
+
+    res.status(200).json(receiverOrders);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
