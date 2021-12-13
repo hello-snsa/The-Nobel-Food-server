@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     served: { type: Array, default: [] },
     noOfNgoMembers: { type: Number },
     currentLocation: { type: String, default: "" },
+    latitude: { type: String, default: "" },
+    longitude: { type: String, default: "" },
+
+
 },
     { timestamps: true, versionKey: false }
 );

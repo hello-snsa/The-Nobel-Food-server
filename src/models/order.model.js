@@ -18,12 +18,15 @@ const orderSchema = new mongoose.Schema(
     riceQuantity: { type: Number },
     dalQuantity: { type: Number },
     vegetablesQuantity: { type: Number },
-    isRaw: { type: Boolean, default: false, required: true },
-    isVeg: { type: Boolean, default: false, required: true },
+    isRaw: { type: Boolean, default: false },
+    isVeg: { type: Boolean, default: false },
     others: { type: Number },
     isCompleted: { type: Boolean, default: false },
+    servedBy: { type: String, default: "" },
     currentLocation: { type: String, default: "" },
     isOrderSelected: { type: Boolean, default: false },
+    latitude: { type: String, default: "" },
+    longitude: { type: String, default: "" },
   },
   { timestamps: true, versionKey: false }
 );
