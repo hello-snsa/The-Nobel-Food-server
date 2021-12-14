@@ -59,7 +59,7 @@ const { register, login, getAllUsers, getUserId, updateUserId, deleteId, getFoll
 //
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:4200']
+    origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:4200', 'https://hackathon-masai.herokuapp.com']
 }))
 
 //middleware express.json()
