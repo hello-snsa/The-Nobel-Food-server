@@ -58,13 +58,17 @@ const orderRoute = require("./controllers/order.controller");
 const { register, login, getAllUsers, getUserId, updateUserId, deleteId, getFollowing } = require("./controllers/user.controller");
 //
 const app = express();
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:4200', 'https://hackathon-masai.herokuapp.com']
-}))
+
+app.use(cors());
+
+
+
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:4200', 'https://hackathon-masai.herokuapp.com']
+// }))
 
 //middleware express.json()
 app.use(express.json());
-app.use(cors());
 
 app.use(helmet());
 app.use(morgan("common"));
